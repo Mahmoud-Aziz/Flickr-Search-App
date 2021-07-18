@@ -86,7 +86,7 @@ We expect you to follow these additional requirements and restrictions, as they 
 
 3. This is not an ordinary assignment. If you notice any strange behavior, you are free to make decisions regarding the implementation or take things out of scope, as long as you can justify your decision.
 
-4. Provide a README.md explaining your approach, including the image caching and the rating view implementation, and any other vital decisions or assumptions you made during development. Also, list all the 3rd party libraries used and the reason why.
+4. Provide a README.md explaining your approach, including the image caching, and any other vital decisions or assumptions you made during development. Also, list all the 3rd party libraries used and the reason why.
 
 5. You should follow the layouts provided to develop the functionalities.
 
