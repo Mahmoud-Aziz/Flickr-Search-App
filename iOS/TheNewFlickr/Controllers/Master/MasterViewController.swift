@@ -96,8 +96,6 @@ class MasterViewController: UIViewController {
             }
         }
     }
-
-   
 }
 
 //MARK:- CollectionView Datasource Methods:
@@ -112,6 +110,7 @@ extension MasterViewController: UICollectionViewDataSource {
         let representedIdentifier = images?[indexPath.item].id
         cell.cellIdentifier = representedIdentifier
         cell.id = Int(representedIdentifier ?? "") ?? 0
+//        FlickrRouter.photoId = images?[indexPath.item].id
         let url = constructURL(for: indexPath.row)
         cell.configure(url: url, id: representedIdentifier)
         return cell

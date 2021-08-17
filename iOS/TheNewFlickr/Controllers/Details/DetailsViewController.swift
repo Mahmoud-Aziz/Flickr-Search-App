@@ -20,6 +20,7 @@ class DetailsViewController: UIViewController {
     private let utilityQueue = DispatchQueue.global(qos: .utility)
     
     var photo: Photo?
+    var sizes: [Size]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,27 @@ class DetailsViewController: UIViewController {
         guard let photo = self.photo else {
             return
         }
+        fetchSizes(photo: photo)
         imageView.kf.setImage(with: constructURL(for: photo))
         titleLabel.text = photo.title
         dateLabel.text = photo.datetaken
         sourceLabel.text = photo.ownername
+    }
+    
+    func fetchSizes(photo: Photo) {
+        let request = FlickrRequest()
+        FlickrRouter.photoId = photo.id
+        request.retrieveSizes({ [weak self] result in
+            switch result {
+            case .success(let Sizes):
+                let sizesCollection = Sizes.sizes.size
+                self?.sizes = sizesCollection
+                print("Fetch Sizes: Successeded")
+                print(Sizes)
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
     
     func constructURL(for photo: Photo) -> URL {

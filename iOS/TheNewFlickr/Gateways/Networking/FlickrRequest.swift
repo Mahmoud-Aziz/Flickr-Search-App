@@ -25,4 +25,19 @@ class FlickrRequest {
             
         }
     }
-}
+    
+    func retrieveSizes(
+        _ completionHandler: @escaping (Result<FlickrSize, AFError>) -> Void
+    ) {
+        let route = FlickrRouter.imagesSizes
+        AF.request(route).responseDecodable { (response: DataResponse<FlickrSize, AFError>) in
+            
+            switch response.result {
+            case .success(let sizes):
+                completionHandler(.success(sizes))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+            
+        }
+    }}

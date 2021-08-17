@@ -12,12 +12,16 @@ enum FlickrRouter: URLRequestConvertible {
     
     static let baseUrl = "https://api.flickr.com/services/rest/"
     static var searchQuery: String?
+    static var photoId: String?
     
     case searchImages
+    case imagesSizes
     
     var httpMethod: HTTPMethod {
         switch self {
         case .searchImages:
+            return .get
+        case .imagesSizes:
             return .get
         }
     }
@@ -36,6 +40,15 @@ enum FlickrRouter: URLRequestConvertible {
                 "extras": "owner_name,date_taken",
                 "text": "\(FlickrRouter.searchQuery ?? "movies")"
                 ]
+        case .imagesSizes:
+            return [
+                "method": "flickr.photos.getSizes",
+                "api_key": "94b0a1ad9d4f1aebf9f2f2c006fb4c65",
+                "photo_id":"\(FlickrRouter.photoId ?? "")",
+                "format": "json",
+                "nojsoncallback": "1",
+                "text": "\(FlickrRouter.searchQuery ?? "movies")"
+            ]
         }
     }
     
@@ -43,12 +56,16 @@ enum FlickrRouter: URLRequestConvertible {
         switch self {
         case .searchImages:
             return [:]
+        case .imagesSizes:
+            return [:]
         }
     }
 
     var encoding: ParameterEncoding {
         switch self {
         case .searchImages:
+            return URLEncoding.default
+        case .imagesSizes:
             return URLEncoding.default
         }
     }
