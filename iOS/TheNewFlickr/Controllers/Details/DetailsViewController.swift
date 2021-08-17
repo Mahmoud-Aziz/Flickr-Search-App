@@ -14,7 +14,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var sizeLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
-    @IBOutlet private weak var sourceLabel: UILabel!
+    @IBOutlet private weak var ownerLabel: UILabel!
     
     var photo: Photo?
     var sizes: [Size]?
@@ -29,12 +29,12 @@ class DetailsViewController: UIViewController {
         imageView.kf.setImage(with: constructURL(for: photo))
         titleLabel.text = photo.title
         dateLabel.text = photo.datetaken
-        sourceLabel.text = photo.ownername
+        ownerLabel.text = photo.ownername
     }
     
     //MARK:- Helpers:
     
-    func fetchSizes(photo: Photo) {
+    private func fetchSizes(photo: Photo) {
         let request = FlickrRequest()
         FlickrRouter.photoId = photo.id
         request.retrieveSizes({ [weak self] result in
@@ -50,7 +50,7 @@ class DetailsViewController: UIViewController {
         })
     }
     
-    func constructURL(for photo: Photo) -> URL {
+    private func constructURL(for photo: Photo) -> URL {
         guard self.photo != nil else {
             let url = URL(string: "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg")!
             return url
@@ -67,30 +67,36 @@ class DetailsViewController: UIViewController {
         let actionSheet = UIAlertController(title: "Choose Size", message: "Choose your preferred image size", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Square", style: .default, handler: {
             [weak self] _ in
-            let url = self?.sizes?[0].source
+            let size = self?.sizes?[0]
+            let url = size?.source
             self?.imageView.kf.setImage(with: URL(string: url ?? ""))
-            
+            self?.sizeLabel.text = "\(size?.width.description ?? "") * \(size?.height.description ?? "")"
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Small", style: .default, handler: {
             [weak self] _ in
-            let url = self?.sizes?[3].source
+            let size = self?.sizes?[3]
+            let url = size?.source
             self?.imageView.kf.setImage(with: URL(string: url ?? ""))
-            
+            self?.sizeLabel.text = "\(size?.width.description ?? "") * \(size?.height.description ?? "")"
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Medium", style: .default, handler: {
             [weak self] _ in
-            let url = self?.sizes?[6].source
+            let size = self?.sizes?[6]
+            let url = size?.source
             self?.imageView.kf.setImage(with: URL(string: url ?? ""))
-            
+            self?.sizeLabel.text = "\(size?.width.description ?? "") * \(size?.height.description ?? "")"
+
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Large", style: .default, handler: {
             [weak self] _ in
-            let url = self?.sizes?[9].source
+            let size = self?.sizes?[9]
+            let url = size?.source
             self?.imageView.kf.setImage(with: URL(string: url ?? ""))
-            
+            self?.sizeLabel.text = "\(size?.width.description ?? "") * \(size?.height.description ?? "")"
+
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

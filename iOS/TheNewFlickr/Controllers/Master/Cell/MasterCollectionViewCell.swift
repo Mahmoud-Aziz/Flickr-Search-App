@@ -10,7 +10,7 @@ import Kingfisher
 
 
 class MasterCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var imageView: UIImageView!
     var cellIdentifier: String? = ""
     var id:Int = 0

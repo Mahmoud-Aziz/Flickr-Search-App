@@ -32,14 +32,14 @@ enum FlickrRouter: URLRequestConvertible {
             return [
                 "method": "flickr.photos.search",
                 "api_key": "94b0a1ad9d4f1aebf9f2f2c006fb4c65",
-
+                
                 "sort": "relevance",
                 "per_page": "30",
                 "format": "json",
                 "nojsoncallback": "1",
                 "extras": "owner_name,date_taken",
                 "text": "\(FlickrRouter.searchQuery ?? "movies")"
-                ]
+            ]
         case .imagesSizes:
             return [
                 "method": "flickr.photos.getSizes",
@@ -60,7 +60,7 @@ enum FlickrRouter: URLRequestConvertible {
             return [:]
         }
     }
-
+    
     var encoding: ParameterEncoding {
         switch self {
         case .searchImages:
@@ -69,15 +69,15 @@ enum FlickrRouter: URLRequestConvertible {
             return URLEncoding.default
         }
     }
-
+    
     func asURLRequest() throws -> URLRequest {
         let urlString = FlickrRouter.baseUrl
         let url = URL(string: urlString)!
-
+        
         var request = URLRequest(url: url)
         request.method = self.httpMethod
         request.headers = HTTPHeaders(headers)
-
+        
         return try! encoding.encode(request, with: parameters)
     }
 }

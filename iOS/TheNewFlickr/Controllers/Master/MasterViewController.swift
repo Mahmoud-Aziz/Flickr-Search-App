@@ -14,7 +14,7 @@ class MasterViewController: UIViewController {
     
     private let cache = NSCache<NSNumber, UIImage>()
     private let utilityQueue = DispatchQueue.global(qos: .utility)
-
+    
     var images: [Photo]?
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class MasterViewController: UIViewController {
     
     //MARK:- Helpers Methods:
     
-    func fetchImages(query: String) {
+    private func fetchImages(query: String) {
         let request = FlickrRequest()
         FlickrRouter.searchQuery = query
         request.retrieveAllPhotos({ [weak self] result in
@@ -47,7 +47,7 @@ class MasterViewController: UIViewController {
         })
     }
     
-    func constructURL(for index: Int) -> URL {
+    private func constructURL(for index: Int) -> URL {
         guard self.images?.count != 0 else {
             let url = URL(string: "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg")!
             return url
@@ -64,13 +64,13 @@ class MasterViewController: UIViewController {
     }
     
     //MARK:- Images Caching Methods:
-
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-
+        
         guard let cell = cell as? MasterCollectionViewCell else { return }
-
+        
         let itemNumber = NSNumber(value: cell.id)
-
+        
         if let cachedImage = self.cache.object(forKey: itemNumber) {
             print("Using a cached image for item: \(itemNumber)")
             cell.imageView.image = cachedImage
@@ -83,14 +83,14 @@ class MasterViewController: UIViewController {
             }
         }
     }
-
+    
     private func loadImage( for index: Int, completion: @escaping (UIImage?) -> ()) {
         utilityQueue.async {
             let url = self.constructURL(for: index)
-
+            
             guard let data = try? Data(contentsOf: url) else { return }
             let image = UIImage(data: data)
-
+            
             DispatchQueue.main.async {
                 completion(image)
             }
@@ -110,7 +110,6 @@ extension MasterViewController: UICollectionViewDataSource {
         let representedIdentifier = images?[indexPath.item].id
         cell.cellIdentifier = representedIdentifier
         cell.id = Int(representedIdentifier ?? "") ?? 0
-//        FlickrRouter.photoId = images?[indexPath.item].id
         let url = constructURL(for: indexPath.row)
         cell.configure(url: url, id: representedIdentifier)
         return cell

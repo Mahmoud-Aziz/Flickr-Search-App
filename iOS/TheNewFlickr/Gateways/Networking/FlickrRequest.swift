@@ -22,7 +22,6 @@ class FlickrRequest {
             case .failure(let error):
                 completionHandler(.failure(error))
             }
-            
         }
     }
     
