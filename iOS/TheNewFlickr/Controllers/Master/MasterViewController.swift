@@ -12,6 +12,9 @@ class MasterViewController: UIViewController {
     @IBOutlet private weak var masterCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    private let cache = NSCache<NSNumber, UIImage>()
+    private let utilityQueue = DispatchQueue.global(qos: .utility)
+
     var images: [Photo]?
     
     override func viewDidLoad() {
@@ -61,6 +64,38 @@ class MasterViewController: UIViewController {
     }
     
     //MARK:- Images Caching Methods:
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+
+        guard let cell = cell as? MasterCollectionViewCell else { return }
+
+        let itemNumber = NSNumber(value: cell.id)
+
+        if let cachedImage = self.cache.object(forKey: itemNumber) {
+            print("Using a cached image for item: \(itemNumber)")
+            cell.imageView.image = cachedImage
+        } else {
+            self.loadImage(for: indexPath.item) { [weak self] (image) in
+                guard let self = self, let image = image else { return }
+                cell.imageView.image = nil
+                cell.imageView.image = image
+                self.cache.setObject(image, forKey: itemNumber)
+            }
+        }
+    }
+
+    private func loadImage( for index: Int, completion: @escaping (UIImage?) -> ()) {
+        utilityQueue.async {
+            let url = self.constructURL(for: index)
+
+            guard let data = try? Data(contentsOf: url) else { return }
+            let image = UIImage(data: data)
+
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }
+    }
 
    
 }
