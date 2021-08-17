@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="TheNewFlickr" customModuleProvider="target">
+            <connections>
+                <outlet property="dateLabel" destination="GBK-y7-yEo" id="QME-p7-fpn"/>
+                <outlet property="imageView" destination="ymA-eS-XLI" id="RP3-jV-TCF"/>
+                <outlet property="sizeLabel" destination="GNf-NZ-Net" id="hez-UZ-rPm"/>
+                <outlet property="sourceLabel" destination="wlM-Mj-NDe" id="1wP-5a-zZo"/>
+                <outlet property="titleLabel" destination="GgI-ov-i3r" id="mQ7-bY-6Mg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ymA-eS-XLI">
+                    <rect key="frame" x="8" y="60" width="398" height="400"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="400" id="eur-Xq-SBM"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgI-ov-i3r" userLabel="TitleLabel">
+                    <rect key="frame" x="173" y="490" width="59" height="39"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNf-NZ-Net">
+                    <rect key="frame" x="20" y="580" width="32" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBK-y7-yEo">
+                    <rect key="frame" x="20" y="609" width="36" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlM-Mj-NDe">
+                    <rect key="frame" x="20" y="638" width="54" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="GBK-y7-yEo" firstAttribute="top" secondItem="GNf-NZ-Net" secondAttribute="bottom" constant="8" symbolic="YES" id="2N1-gS-88b"/>
+                <constraint firstItem="GgI-ov-i3r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="173" id="2fI-XU-ZAo"/>
+                <constraint firstItem="GBK-y7-yEo" firstAttribute="leading" secondItem="GNf-NZ-Net" secondAttribute="leading" id="CbE-0X-Dko"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ymA-eS-XLI" secondAttribute="trailing" constant="8" id="ED1-HH-wFv"/>
+                <constraint firstItem="GgI-ov-i3r" firstAttribute="top" secondItem="ymA-eS-XLI" secondAttribute="bottom" constant="30" id="Fim-TI-sCv"/>
+                <constraint firstItem="ymA-eS-XLI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="LQo-Ct-DWO"/>
+                <constraint firstItem="wlM-Mj-NDe" firstAttribute="top" secondItem="GBK-y7-yEo" secondAttribute="bottom" constant="8" symbolic="YES" id="TnR-AK-gWk"/>
+                <constraint firstItem="wlM-Mj-NDe" firstAttribute="leading" secondItem="GBK-y7-yEo" secondAttribute="leading" id="Uiw-of-CeU"/>
+                <constraint firstItem="GNf-NZ-Net" firstAttribute="top" secondItem="ymA-eS-XLI" secondAttribute="bottom" constant="120" id="dr9-li-fHA"/>
+                <constraint firstItem="GNf-NZ-Net" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="j6T-hh-753"/>
+                <constraint firstItem="ymA-eS-XLI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="kBU-5e-Sxm"/>
+            </constraints>
+            <point key="canvasLocation" x="-33" y="100"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
