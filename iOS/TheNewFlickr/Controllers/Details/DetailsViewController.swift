@@ -16,9 +16,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var sourceLabel: UILabel!
     
-    private let cache = NSCache<NSNumber, UIImage>()
-    private let utilityQueue = DispatchQueue.global(qos: .utility)
-    
     var photo: Photo?
     var sizes: [Size]?
     
@@ -34,6 +31,8 @@ class DetailsViewController: UIViewController {
         dateLabel.text = photo.datetaken
         sourceLabel.text = photo.ownername
     }
+    
+    //MARK:- Helpers:
     
     func fetchSizes(photo: Photo) {
         let request = FlickrRequest()
@@ -59,6 +58,43 @@ class DetailsViewController: UIViewController {
         let urlScheme = "https://live.staticflickr.com/\(photo.server)/\(photo.id)_\(photo.secret).jpg"
         let url = URL(string: urlScheme)
         return url ?? URL(string: "error")!
+    }
+    
+    //MARK:- Choose size actionSheet:
+    
+    @IBAction private func chooseSizeButtonPresses(sender: UIButton) {
+        
+        let actionSheet = UIAlertController(title: "Choose Size", message: "Choose your preferred image size", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Square", style: .default, handler: {
+            [weak self] _ in
+            let url = self?.sizes?[0].source
+            self?.imageView.kf.setImage(with: URL(string: url ?? ""))
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Small", style: .default, handler: {
+            [weak self] _ in
+            let url = self?.sizes?[3].source
+            self?.imageView.kf.setImage(with: URL(string: url ?? ""))
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Medium", style: .default, handler: {
+            [weak self] _ in
+            let url = self?.sizes?[6].source
+            self?.imageView.kf.setImage(with: URL(string: url ?? ""))
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Large", style: .default, handler: {
+            [weak self] _ in
+            let url = self?.sizes?[9].source
+            self?.imageView.kf.setImage(with: URL(string: url ?? ""))
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(actionSheet,animated: true)
     }
 
 }

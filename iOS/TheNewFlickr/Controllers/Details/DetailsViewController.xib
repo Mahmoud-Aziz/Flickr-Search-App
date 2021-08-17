@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ymA-eS-XLI">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ymA-eS-XLI">
                     <rect key="frame" x="8" y="60" width="398" height="400"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="400" id="eur-Xq-SBM"/>
@@ -53,6 +53,13 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfb-8h-LO1">
+                    <rect key="frame" x="164" y="770" width="86" height="30"/>
+                    <state key="normal" title="Choose Size"/>
+                    <connections>
+                        <action selector="chooseSizeButtonPressesWithSender:" destination="-1" eventType="touchUpInside" id="Ot8-bD-gxj"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -62,9 +69,12 @@
                 <constraint firstItem="GBK-y7-yEo" firstAttribute="leading" secondItem="GNf-NZ-Net" secondAttribute="leading" id="CbE-0X-Dko"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ymA-eS-XLI" secondAttribute="trailing" constant="8" id="ED1-HH-wFv"/>
                 <constraint firstItem="GgI-ov-i3r" firstAttribute="top" secondItem="ymA-eS-XLI" secondAttribute="bottom" constant="30" id="Fim-TI-sCv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Zfb-8h-LO1" secondAttribute="bottom" constant="62" id="Kg5-Ab-Rzk"/>
                 <constraint firstItem="ymA-eS-XLI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="LQo-Ct-DWO"/>
+                <constraint firstItem="Zfb-8h-LO1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="R5C-A6-xBq"/>
                 <constraint firstItem="wlM-Mj-NDe" firstAttribute="top" secondItem="GBK-y7-yEo" secondAttribute="bottom" constant="8" symbolic="YES" id="TnR-AK-gWk"/>
                 <constraint firstItem="wlM-Mj-NDe" firstAttribute="leading" secondItem="GBK-y7-yEo" secondAttribute="leading" id="Uiw-of-CeU"/>
+                <constraint firstItem="Zfb-8h-LO1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="164" id="Vnu-Fj-X7g"/>
                 <constraint firstItem="GNf-NZ-Net" firstAttribute="top" secondItem="ymA-eS-XLI" secondAttribute="bottom" constant="120" id="dr9-li-fHA"/>
                 <constraint firstItem="GNf-NZ-Net" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="j6T-hh-753"/>
                 <constraint firstItem="ymA-eS-XLI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="kBU-5e-Sxm"/>

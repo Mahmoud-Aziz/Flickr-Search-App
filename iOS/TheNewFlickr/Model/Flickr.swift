@@ -39,7 +39,7 @@ struct Sizes: Decodable {
 
 struct Size: Decodable {
     let label: String
-    let url: String
+    let source: String
     let width: Int
     let height: Int
 }
