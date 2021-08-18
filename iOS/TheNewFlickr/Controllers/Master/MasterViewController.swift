@@ -16,6 +16,7 @@ class MasterViewController: UIViewController {
     private let utilityQueue = DispatchQueue.global(qos: .utility)
     
     var images: [Photo]?
+    var searchTerms: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,6 @@ class MasterViewController: UIViewController {
         registerCell()
         masterCollectionView.isHidden = true
         searchBar.showsSearchResultsButton = true
-        
     }
     
     //MARK:- Helpers Methods:
@@ -135,6 +135,7 @@ extension MasterViewController: UISearchBarDelegate {
             masterCollectionView.isHidden = true
             return
         }
+        self.searchTerms?.append(text)
         images = []
         searchBar.showsCancelButton = true
         masterCollectionView.isHidden = false
@@ -143,7 +144,10 @@ extension MasterViewController: UISearchBarDelegate {
     }
     
     func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
-        
+        let vc = SearchTermsViewController()
+        vc.modalPresentationStyle = .popover
+        vc.searchTerms? = self.searchTerms ?? []
+        self.navigationController?.present(vc, animated: true)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
